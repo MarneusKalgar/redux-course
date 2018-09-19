@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { User } from '../components/User'
 import { Page } from '../components/Page'
+import { setYear } from '../actions/pageActions'
 
 import './App.css'
 
@@ -17,7 +18,7 @@ class App extends Component {
         </header>
 
         <User name={name} />
-        <Page photos={photos} year={year} />
+        <Page photos={photos} year={year} setYear={this.props.setYearAction} />
       </div>
     )
   }
@@ -31,4 +32,13 @@ const mapStateToProps = store => {
   }
 }
 
-export default connect(mapStateToProps)(App)
+const mapDispatchToProps = dispatch => {
+  return {
+    setYearAction: year => dispatch(setYear(year)),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)
