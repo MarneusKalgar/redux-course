@@ -10,13 +10,21 @@ export class Page extends Component {
   render() {
     const { year, photos } = this.props
     return (
-      <div>
+      <div className="ib page">
+        <button className="btn" onClick={this.btnClick}>
+          2018
+        </button>
+        <button className="btn" onClick={this.btnClick}>
+          2017
+        </button>
+        <button className="btn" onClick={this.btnClick}>
+          2016
+        </button>
+        <button className="btn" onClick={this.btnClick}>
+          2015
+        </button>
         <p>{year}</p>
         <p>{photos.length}</p>
-        <button onClick={this.btnClick}>2018</button>
-        <button onClick={this.btnClick}>2017</button>
-        <button onClick={this.btnClick}>2016</button>
-        <button onClick={this.btnClick}>2015</button>
       </div>
     )
   }

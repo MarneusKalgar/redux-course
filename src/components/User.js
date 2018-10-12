@@ -6,7 +6,7 @@ export class User extends Component {
     const { name, surname, age } = this.props.user
     console.log(this.props)
     return (
-      <div>
+      <div className="ib user">
         <p>
           {name}, {surname}, {age}
         </p>

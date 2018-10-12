@@ -15,9 +15,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Мой топ фото</h1>
-          <User user={user} />
           <Page year={year} photos={photos} setYear={setYearAction} />
+          <User user={user} />
         </header>
       </div>
     )
