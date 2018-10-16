@@ -2,20 +2,23 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { User } from '../components/User'
 import { Page } from '../components/Page'
-import { setYear } from '../actions/page'
+import { getPhotos } from '../actions/page'
 
 import './App.css'
 
 class App extends Component {
   render() {
-    const { user } = this.props
-    const { year, photos } = this.props.page
-    const { setYearAction } = this.props
+    const { user, page, getPhotos } = this.props
 
     return (
       <div className="App">
         <header className="App-header">
-          <Page year={year} photos={photos} setYear={setYearAction} />
+          <Page
+            year={page.year}
+            photos={page.photos}
+            isLoading={page.isLoading}
+            getPhotos={getPhotos}
+          />
           <User user={user} />
         </header>
       </div>
@@ -31,13 +34,13 @@ const mapStateToProps = store => {
   }
 }
 
-const mapDispathToProps = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
-    setYearAction: year => dispatch(setYear(year)),
+    getPhotos: year => dispatch(getPhotos(year)),
   }
 }
 
 export default connect(
   mapStateToProps,
-  mapDispathToProps
+  mapDispatchToProps
 )(App)

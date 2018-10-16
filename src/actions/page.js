@@ -1,8 +1,17 @@
-export const SET_YEAR = 'SET_YEAR'
+export const GET_PHOTOS = 'GET_PHOTOS'
+export const SET_PHOTOS = 'SET_PHOTOS'
 
-export function setYear(year) {
-  return {
-    type: SET_YEAR,
-    payload: year,
+export function getPhotos(year) {
+  return dispatch => {
+    dispatch({
+      type: GET_PHOTOS,
+      payload: year,
+    })
+    setTimeout(() => {
+      dispatch({
+        type: SET_PHOTOS,
+        payload: [1, 2, 3],
+      })
+    }, 1000)
   }
 }

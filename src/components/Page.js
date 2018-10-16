@@ -4,11 +4,12 @@ import PropTypes from 'prop-types'
 export class Page extends Component {
   btnClick = e => {
     const year = +e.currentTarget.innerText
-    this.props.setYear(year)
+    this.props.getPhotos(year)
   }
 
   render() {
-    const { year, photos } = this.props
+    const { year, photos, isLoading } = this.props
+
     return (
       <div className="ib page">
         <button className="btn" onClick={this.btnClick}>
@@ -24,7 +25,7 @@ export class Page extends Component {
           2015
         </button>
         <p>{year}</p>
-        <p>{photos.length}</p>
+        <p>{isLoading ? 'Loading...' : photos.length}</p>
       </div>
     )
   }
@@ -33,4 +34,6 @@ export class Page extends Component {
 Page.propTypes = {
   year: PropTypes.number.isRequired,
   photos: PropTypes.array.isRequired,
+  getPhotos: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 }
