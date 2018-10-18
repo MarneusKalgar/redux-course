@@ -2,23 +2,35 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 export class User extends Component {
+  renderTemplate = () => {
+    const { name, error, isFetching, loginUser } = this.props
+    if (error) {
+      return <p>Error!</p>
+    }
+
+    if (isFetching) {
+      return <p>Loading...</p>
+    }
+
+    if (name) {
+      return <p>{name}</p>
+    } else {
+      return (
+        <button className="btn" onClick={loginUser}>
+          Sign In
+        </button>
+      )
+    }
+  }
+
   render() {
-    const { name, surname, age } = this.props.user
-    console.log(this.props)
-    return (
-      <div className="ib user">
-        <p>
-          {name}, {surname}, {age}
-        </p>
-      </div>
-    )
+    return <div className="ib user">{this.renderTemplate()}</div>
   }
 }
 
 User.propTypes = {
-  user: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    surname: PropTypes.string.isRequired,
-    age: PropTypes.number.isRequired,
-  }),
+  name: PropTypes.string.isRequired,
+  error: PropTypes.string,
+  isFetching: PropTypes.bool.isRequired,
+  loginUser: PropTypes.func.isRequired,
 }
