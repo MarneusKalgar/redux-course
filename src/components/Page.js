@@ -26,6 +26,15 @@ export class Page extends Component {
         </button>
         <p>{year}</p>
         <p>{isLoading ? 'Loading...' : photos.length}</p>
+        <ul style={{ display: 'flex', flexWrap: 'wrap' }}>
+          {photos.map(photo => {
+            return (
+              <li key={photo.id}>
+                <img src={photo.sizes[3].url} alt="" />
+              </li>
+            )
+          })}
+        </ul>
       </div>
     )
   }

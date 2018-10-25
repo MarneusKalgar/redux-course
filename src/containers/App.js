@@ -18,6 +18,7 @@ class App extends Component {
             year={page.year}
             photos={page.photos}
             isLoading={page.isLoading}
+            error={page.error}
             getPhotos={getPhotos}
           />
           <User
