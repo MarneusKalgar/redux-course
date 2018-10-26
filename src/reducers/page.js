@@ -5,7 +5,7 @@ import {
 } from '../actions/page'
 
 const initialState = {
-  year: 2018,
+  year: 2017,
   photos: [],
   isLoading: false,
 }

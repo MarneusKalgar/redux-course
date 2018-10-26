@@ -8,19 +8,27 @@ export function getPhotos(year) {
   return dispatch => {
     dispatch({
       type: GET_PHOTOS_REQUEST,
+      payload: year,
     })
 
     VK.Api.call(
       'photos.getAll',
-      { owner_id: 8169354, count: 20, v: '5.87' },
+      { owner_id: 8169354, count: 100, extended: 1, v: '5.87' },
       res => {
         if (res.response) {
-          console.log(res.response)
+          const filteredItems = res.response.items
+            .filter(item => {
+              const itemDate = new Date(item.date * 1000).getFullYear()
+              return itemDate === year
+            })
+            .sort((a, b) => {
+              return b.likes.count - a.likes.count
+            })
 
           dispatch({
             type: GET_PHOTOS_SUCCESS,
             payload: {
-              photos: res.response.items,
+              photos: filteredItems,
               year: year,
             },
           })

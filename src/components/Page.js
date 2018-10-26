@@ -13,9 +13,6 @@ export class Page extends Component {
     return (
       <div className="ib page">
         <button className="btn" onClick={this.btnClick}>
-          2018
-        </button>
-        <button className="btn" onClick={this.btnClick}>
           2017
         </button>
         <button className="btn" onClick={this.btnClick}>
@@ -24,6 +21,9 @@ export class Page extends Component {
         <button className="btn" onClick={this.btnClick}>
           2015
         </button>
+        <button className="btn" onClick={this.btnClick}>
+          2014
+        </button>
         <p>{year}</p>
         <p>{isLoading ? 'Loading...' : photos.length}</p>
         <ul style={{ display: 'flex', flexWrap: 'wrap' }}>
@@ -31,6 +31,7 @@ export class Page extends Component {
             return (
               <li key={photo.id}>
                 <img src={photo.sizes[3].url} alt="" />
+                <p style={{ color: 'black' }}>likes {photo.likes.count}</p>
               </li>
             )
           })}
