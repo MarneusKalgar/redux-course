@@ -15,7 +15,7 @@ export function getPhotos(year) {
       'photos.getAll',
       { owner_id: 8169354, count: 100, extended: 1, v: '5.87' },
       res => {
-        if (res.response) {
+        try {
           const filteredItems = res.response.items
             .filter(item => {
               const itemDate = new Date(item.date * 1000).getFullYear()
@@ -27,15 +27,13 @@ export function getPhotos(year) {
 
           dispatch({
             type: GET_PHOTOS_SUCCESS,
-            payload: {
-              photos: filteredItems,
-              year: year,
-            },
+            payload: filteredItems,
           })
-        } else {
+        } catch (e) {
           dispatch({
             type: GET_PHOTOS_FAIL,
-            payload: new Error('Load Photos Error'),
+            error: true,
+            payload: new Error(e),
           })
         }
       }

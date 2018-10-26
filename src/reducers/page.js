@@ -8,6 +8,7 @@ const initialState = {
   year: 2017,
   photos: [],
   isLoading: false,
+  error: '',
 }
 
 export function pageReducer(state = initialState, action) {
@@ -17,20 +18,22 @@ export function pageReducer(state = initialState, action) {
         ...state,
         year: action.payload,
         isLoading: true,
+        error: '',
       }
 
     case GET_PHOTOS_SUCCESS:
       return {
         ...state,
-        photos: action.payload.photos,
-        year: action.payload.year,
+        photos: action.payload,
         isLoading: false,
+        error: '',
       }
 
     case GET_PHOTOS_FAIL:
       return {
         ...state,
         error: action.payload.message,
+        isLoading: false,
       }
 
     default:
