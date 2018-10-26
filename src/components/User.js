@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 export class User extends Component {
   renderTemplate = () => {
-    const { name, error, isFetching, loginUser } = this.props
+    const { name, error, isFetching, handleLogin } = this.props
     if (error) {
       return <p>Error!</p>
     }
@@ -16,7 +16,7 @@ export class User extends Component {
       return <p>{name}</p>
     } else {
       return (
-        <button className="btn" onClick={loginUser}>
+        <button className="btn" onClick={handleLogin}>
           Sign In
         </button>
       )
@@ -32,5 +32,5 @@ User.propTypes = {
   name: PropTypes.string.isRequired,
   error: PropTypes.string,
   isFetching: PropTypes.bool.isRequired,
-  loginUser: PropTypes.func.isRequired,
+  handleLogin: PropTypes.func.isRequired,
 }

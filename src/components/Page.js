@@ -9,6 +9,7 @@ export class Page extends Component {
 
   render() {
     const { year, photos, error, isLoading } = this.props
+    const btnText = [2017, 2016, 2015, 2014]
 
     let template = null
     if (error) {
@@ -33,20 +34,14 @@ export class Page extends Component {
 
     return (
       <div className="ib page">
-        <button className="btn" onClick={this.btnClick}>
-          2017
-        </button>
-        <button className="btn" onClick={this.btnClick}>
-          2016
-        </button>
-        <button className="btn" onClick={this.btnClick}>
-          2015
-        </button>
-        <button className="btn" onClick={this.btnClick}>
-          2014
-        </button>
+        {btnText.map(btn => {
+          return (
+            <button className="btn" onClick={this.btnClick} key={btn}>
+              {btn}
+            </button>
+          )
+        })}
         <p>{year}</p>
-
         {template}
       </div>
     )
